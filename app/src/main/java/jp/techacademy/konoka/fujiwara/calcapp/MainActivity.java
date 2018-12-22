@@ -75,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         try {
             if (tmp2.length() > 0) {
                 value2 = Double.parseDouble(tmp2);//EditTextコントロールから取得した文字列を数値に変換
+
             } else{
                 Snackbar.make(v, "未入力です。数値を入力してください。", Snackbar.LENGTH_SHORT)
                         .setAction("Action", new View.OnClickListener() {

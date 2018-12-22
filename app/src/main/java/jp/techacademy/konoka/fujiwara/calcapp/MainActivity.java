@@ -1,6 +1,5 @@
 package jp.techacademy.konoka.fujiwara.calcapp;
 
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -38,15 +37,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
 
-        double value1;
-
         mEditText1 = (EditText) findViewById(R.id.editText1); //エディットのIDを取得して変数に入れる
         String tmp1 = mEditText1.getText().toString(); //EditTextコントロールから値を文字列形式で取得
 
-        if (tmp1.length() > 0) {
-            value1 = Double.parseDouble(tmp1);//EditTextコントロールから取得した文字列を数値に変換
-        } else {
-            Snackbar.make(v, "未入力です。数値を入力してください。", Snackbar.LENGTH_SHORT)
+        double value1;
+        value1 =  0.0;
+
+        try {
+            if (tmp1.length() > 0) {
+                value1 = Double.parseDouble(tmp1);//EditTextコントロールから取得した文字列を数値に変換
+            } else {
+                Snackbar.make(v, "未入力です。数値を入力してください。", Snackbar.LENGTH_SHORT)
+                        .setAction("Action", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Log.d("UI-PARTS", "Snack barをタップした");
+                            }
+                        }).show();return;
+            }
+        }catch (NumberFormatException e) {
+            Snackbar.make(v, "数値を入力してください。", Snackbar.LENGTH_SHORT)
                     .setAction("Action", new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -55,38 +65,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }).show();return;
         }
 
-        double value2;
 
         mEditText2 = (EditText) findViewById(R.id.editText2); //エディットのIDを取得して変数に入れる
         String tmp2 = mEditText2.getText().toString(); //EditTextコントロールから値を文字列形式で取得
 
+        double value2;
+        value2 =  0.0;
 
-        if (tmp2.length() > 0) {
-            value2 = Double.parseDouble(tmp2);//EditTextコントロールから取得した文字列を数値に変換
-        } else{
-            Snackbar.make(v, "未入力です。数値を入力してください。", Snackbar.LENGTH_SHORT)
+        try {
+            if (tmp2.length() > 0) {
+                value2 = Double.parseDouble(tmp2);//EditTextコントロールから取得した文字列を数値に変換
+            } else{
+                Snackbar.make(v, "未入力です。数値を入力してください。", Snackbar.LENGTH_SHORT)
+                        .setAction("Action", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Log.d("UI-PARTS", "Snack barをタップした");
+                            }
+                        }).show();return;
+            }
+        } catch (NumberFormatException e) {
+            Snackbar.make(v, "数値を入力してください。", Snackbar.LENGTH_SHORT)
                     .setAction("Action", new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             Log.d("UI-PARTS", "Snack barをタップした");
                         }
                     }).show();return;
-        }
-
-        try {
-            value1 = Double.parseDouble(tmp1);
-        }catch (NumberFormatException e) {
-            Log.d("javatest", "数値を以外はエラー");
-            // 例外情報から、メッセージを表示
-            Log.d("javatest", e.getMessage());
-        }
-
-        try {
-            value2 = Double.parseDouble(tmp2);
-        } catch (NumberFormatException e) {
-            Log.d("javatest", "数値を以外はエラー");
-            // 例外情報から、メッセージを表示
-            Log.d("javatest", e.getMessage());
         }
 
 

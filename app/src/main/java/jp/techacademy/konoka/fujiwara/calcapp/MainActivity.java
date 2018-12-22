@@ -41,10 +41,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         double value1;
 
         mEditText1 = (EditText) findViewById(R.id.editText1); //エディットのIDを取得して変数に入れる
-        String tmp = mEditText1.getText().toString(); //EditTextコントロールから値を文字列形式で取得
+        String tmp1 = mEditText1.getText().toString(); //EditTextコントロールから値を文字列形式で取得
 
-        if (tmp.length() > 0) {
-            value1 = Double.parseDouble(tmp);//EditTextコントロールから取得した文字列を数値に変換
+        if (tmp1.length() > 0) {
+            value1 = Double.parseDouble(tmp1);//EditTextコントロールから取得した文字列を数値に変換
         } else {
             Snackbar.make(v, "未入力です。数値を入力してください。", Snackbar.LENGTH_SHORT)
                     .setAction("Action", new View.OnClickListener() {
@@ -60,9 +60,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mEditText2 = (EditText) findViewById(R.id.editText2); //エディットのIDを取得して変数に入れる
         String tmp2 = mEditText2.getText().toString(); //EditTextコントロールから値を文字列形式で取得
 
+
         if (tmp2.length() > 0) {
             value2 = Double.parseDouble(tmp2);//EditTextコントロールから取得した文字列を数値に変換
-        } else {
+        } else{
             Snackbar.make(v, "未入力です。数値を入力してください。", Snackbar.LENGTH_SHORT)
                     .setAction("Action", new View.OnClickListener() {
                         @Override
@@ -70,6 +71,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             Log.d("UI-PARTS", "Snack barをタップした");
                         }
                     }).show();return;
+        }
+
+        try {
+            value1 = Double.parseDouble(tmp1);
+        }catch (NumberFormatException e) {
+            Log.d("javatest", "数値を以外はエラー");
+            // 例外情報から、メッセージを表示
+            Log.d("javatest", e.getMessage());
+        }
+
+        try {
+            value2 = Double.parseDouble(tmp2);
+        } catch (NumberFormatException e) {
+            Log.d("javatest", "数値を以外はエラー");
+            // 例外情報から、メッセージを表示
+            Log.d("javatest", e.getMessage());
         }
 
 
@@ -94,27 +111,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             default:
                 break;
         }
-
-        try {
-            value1 = Double.parseDouble(tmp);
-        } catch (Exception e) {
-            Log.d("javatest", "数値を以外はエラー");
-            // 例外情報から、メッセージを表示
-            Log.d("javatest", e.getMessage());
-        }
-        Log.d("javatest", "ans = " + String.valueOf(tmp));
-
-
-        try {
-            value2 = Double.parseDouble(tmp2);
-        } catch (Exception e) {
-            Log.d("javatest", "数値を以外はエラー");
-            // 例外情報から、メッセージを表示
-            Log.d("javatest", e.getMessage());
-        }
-        Log.d("javatest", "ans = " + String.valueOf(tmp2));
-
-
 
         Intent intent = new Intent(this, SecondActivity.class);
         intent.putExtra("RESULT", result);

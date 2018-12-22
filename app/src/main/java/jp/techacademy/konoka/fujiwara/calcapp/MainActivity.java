@@ -112,7 +112,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.button4:
-                result = value1 / value2;
+                if(value2 == 0){
+                    Snackbar.make(v, "0は入力できません。", Snackbar.LENGTH_SHORT)
+                            .setAction("Action", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Log.d("UI-PARTS", "Snack barをタップした");
+                                }
+                            }).show();return;
+                }else {
+                    result = value1 / value2;
+                }
                 break;
             default:
                 break;
